@@ -1,10 +1,18 @@
 In this project I tried to Make a Deflection Analysis of a Cantilever Beam with Finite Element Analysis method using C# .NET.
 For the purpose of data management and presentation I have used VBA in MS ACCESS.
-The code for Beam Analysis has these Classes/Interfaces 
+The code for the Beam Analysis has these Classes/Interfaces:
 BeamElement
 Material
 Isection
 SectionType
 RectSection
-The Beam is initialized simply by its length,section Id,material Id, and force value. 
-The code for Deflection Analysis is written with the help of 
+DataReader
+
+
+The code for Deflection Analysis is written with the help of PythonFEM project "https://github.com/vishnurvp/PythonFEM"
+MathNet.Numerics Nuget package is used for Matrix Calculations. "https://github.com/mathnet/mathnet-numerics"
+DataReader.cs is responsible for only reading the Materials and Sections from the MsAccess Database
+After 
+The Beam is initialized simply by its length,section Id,material Id, and force value which are provided from a VBA form inside the access file and then it returns an array of displacements with respect to mesh number parameter passed to its Displacements method.
+The result is displayed in a form of line chart which is bounded to Deflections table.
+
