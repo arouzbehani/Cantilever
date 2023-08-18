@@ -1,0 +1,9 @@
+
+*.so
+*.txt
+.vs/
+release/
+debug/
+obj/
+packages/
+
