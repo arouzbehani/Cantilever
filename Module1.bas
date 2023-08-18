@@ -8,9 +8,7 @@ Sub CalculateDeflection()
     Dim strSQL As String
     Dim beamObj As New One_Dim_Beam.BeamElement
     
-    Dim selectedValue As String
-    selectedValue = Form_Form1.Combo16.Value
-
+ 
     beamObj.Force = CDbl(Form_Form1.txtForce.Value)
     beamObj.Length = CDbl(Form_Form1.txtLength.Value)
     beamObj.Matid = Int(Form_Form1.cmbSections.Value)
