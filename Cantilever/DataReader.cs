@@ -43,6 +43,34 @@ namespace Cantilever
             }
             return materials;
         }
+        public Dictionary<int,RectSection> ReadSections()
+        {
+            Dictionary<int, RectSection> sections = new Dictionary<int, RectSection>();
+            string connectionString =String.Format($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={path};Persist Security Info=False;");
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT * FROM Sections";
+                using (OleDbCommand command = new OleDbCommand(query, connection))
+                {
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["Name"].ToString();
+                            int id = int.Parse(reader["ID"].ToString());
+                            double b = double.Parse(reader["B"].ToString());
+                            double d = double.Parse(reader["D"].ToString());
+                            sections.Add(id,new RectSection(id,name, b,d));
+                        }
+                    }
+                }
+
+                connection.Close();
+            }
+            return sections;
+        }
+
     }
 
 

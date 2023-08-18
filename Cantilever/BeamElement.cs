@@ -14,6 +14,7 @@ namespace Cantilever
     {
         private double _length = 1;
         private int _matid = 1;
+        private int _secid = 1;
         private Material material;
         private ISection section;
         private double _force = 0.1;
@@ -22,7 +23,7 @@ namespace Cantilever
 
         }
 
-        public BeamElement(double length, int matid,double force)
+        public BeamElement(double length, int matid,int secid,double force)
         {
             _length = length;
             _matid = matid;
@@ -34,11 +35,11 @@ namespace Cantilever
         public int Matid { get => _matid; set => _matid = value;  }
         public double[] Displacements(int mesh=10)
         {
-            section = new RectSection(50,50);
             var dr = new DataReader();
             var materials = dr.ReadMaterials();
+            var sections = dr.ReadSections();
             material = materials[_matid];
-
+            section = sections[_secid];
             // Beam properties
             double E = material.YoungsModulus; // Young's modulus 
             double L = _length; // Length
