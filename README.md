@@ -18,4 +18,4 @@ The result is displayed in a form of line chart which is bounded to the Deflecti
 The accuracy of the displacements are validated by analysis of a the same cantilever beam modeled in CSI SAP2022 sofware.
 
 
-![Alt Text](https://github.com/arouzbehani/Cantilever/blob/master/Cantilever/front.png)https://github.com/arouzbehani/Cantilever/blob/master/Cantilever/front.png)
+![Alt Text](https://github.com/arouzbehani/Cantilever/blob/master/Cantilever/front.png)
