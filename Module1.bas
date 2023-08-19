@@ -6,9 +6,8 @@ Sub CalculateDeflection()
     Dim db As Database
     Dim rs As Recordset
     Dim strSQL As String
-    Dim beamObj As New One_Dim_Beam.BeamElement
-    
- 
+    Dim beamObj As New Cantilever.BeamElement
+
     beamObj.Force = CDbl(Form_Form1.txtForce.Value)
     beamObj.Length = CDbl(Form_Form1.txtLength.Value)
     beamObj.Matid = Int(Form_Form1.cmbSections.Value)
