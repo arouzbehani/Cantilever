@@ -16,7 +16,18 @@ The code for the Beam Analysis has these Classes/Interfaces located in [**Cantil
 [DataReader.cs](https://github.com/arouzbehani/Cantilever/blob/master/Cantilever/BeamElement.cs) is also responsible for reading the Materials and Sections from the MsAccess Database.
 
 The Beam is initialized simply by its length,section Id,material Id, and force value in [**vba module**](https://github.com/arouzbehani/Cantilever/blob/master/Module1.bas) which are provided from a VBA form inside the access file and then it returns an array of displacements with respect to mesh number parameter passed to its Displacements method.
+```vb
+    Dim beamObj As New Cantilever.BeamElement
 
+    beamObj.Force = CDbl(Form_Form1.txtForce.Value)
+    beamObj.Length = CDbl(Form_Form1.txtLength.Value)
+    beamObj.SectionId = Int(Form_Form1.cmbSections.Value)
+    beamObj.MatId = Int(Form_Form1.cmbMaterials.Value)
+    
+    Dim meshNum As Integer
+    meshNum = Int(Form_Form1.txtMeshNum.Value)
+    res = beamObj.Displacements(meshNum)
+```
 The result is displayed in the form of line chart which is bounded to the Deflections table.
 
 [**https://youtu.be/fbS7ZiWBtJo**](https://youtu.be/fbS7ZiWBtJo)
