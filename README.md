@@ -18,11 +18,15 @@ The code for the Beam Analysis has these Classes/Interfaces located in [**Cantil
 The Beam is initialized simply by its length,section Id,material Id, and force value in [**vba module**](https://github.com/arouzbehani/Cantilever/blob/master/Module1.bas) which are provided from a VBA form inside the access file and then it returns an array of displacements with respect to mesh number parameter passed to its Displacements method.
 
 The result is displayed in the form of line chart which is bounded to the Deflections table.
+
+[**https://youtu.be/fbS7ZiWBtJo**](https://youtu.be/fbS7ZiWBtJo)
+
 [![Cantilever Beam Cover](https://github.com/arouzbehani/Cantilever/blob/master/res/cover.png)](https://youtu.be/fbS7ZiWBtJo)
 
 
 ## Adding .NET dll to vba project Considerations
 1- I figured out that for adding C# dlls to VBA project as a reference they should be first registered with regsam.exe command:
+<!---->
 ```
       C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe cantilever.dll /codebase /tlb 
       C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe cantilever.dll /codebase
@@ -39,7 +43,7 @@ then the ***created tlb file*** should be added as a reference.
 ```
 
 ## References
-+ The code for Deflection Analysis is written with the help of paython project named  [**PythonFEM**](https://github.com/vishnurvp/PythonFEM) and for the purpose of matrix calculations the nuget package [**mathnet-numerics**](https://github.com/mathnet/mathnet-numerics) is installed.
++ The code for Deflection Analysis is written with the help of Python project named  [**PythonFEM**](https://github.com/vishnurvp/PythonFEM) and for the purpose of matrix calculations the nuget package [**mathnet-numerics**](https://github.com/mathnet/mathnet-numerics) is installed.
 
 + The accuracy of the displacements are validated by analysis of a the same cantilever beam modeled in CSI SAP 2022 sofware.
 
