@@ -21,11 +21,6 @@ The result is displayed in the form of line chart which is bounded to the Deflec
 
 ![Alt Text](https://github.com/arouzbehani/Cantilever/blob/master/Cantilever/front.png)
 
-## References
-+ The code for Deflection Analysis is written with the help of paython project named  [**PythonFEM**](https://github.com/vishnurvp/PythonFEM) and for the purpose of Mmatrix calculations the nuget package [**mathnet-numerics**](https://github.com/mathnet/mathnet-numerics) is installed.
-
-+ The accuracy of the displacements are validated by analysis of a the same cantilever beam modeled in CSI SAP 2022 sofware.
-
 
 ## Adding .NET dll to vba project Considerations
 1- I figured out that for adding C# dlls to VBA project as a reference they should be first registered with regsam.exe command:
@@ -44,3 +39,7 @@ then the ***created tlb file*** should be added as a reference.
       [assembly: ComVisible(true)]
 ```
 
+## References
++ The code for Deflection Analysis is written with the help of paython project named  [**PythonFEM**](https://github.com/vishnurvp/PythonFEM) and for the purpose of matrix calculations the nuget package [**mathnet-numerics**](https://github.com/mathnet/mathnet-numerics) is installed.
+
++ The accuracy of the displacements are validated by analysis of a the same cantilever beam modeled in CSI SAP 2022 sofware.
