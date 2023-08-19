@@ -1,4 +1,4 @@
-# Cantilever Beam FEM Analysis
+# Cantilever Beam FEM Deflection Analysis
 In this project I tried to make a *Deflection Analysis* of a Cantilever Beam with the Finite Element Analysis method using C# .NET.
 
 For the purpose of data management and presentation I used VBA in MS ACCESS.
