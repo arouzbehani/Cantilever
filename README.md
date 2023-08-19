@@ -21,11 +21,6 @@ The result is displayed in the form of line chart which is bounded to the Deflec
 [![Cantilever Beam Cover](https://github.com/arouzbehani/Cantilever/blob/master/res/cover.png)](https://youtu.be/fbS7ZiWBtJo)
 
 
-
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=fbS7ZiWBtJo
-" target="_blank"><img src="https://github.com/arouzbehani/Cantilever/blob/master/res/cover.png" 
-alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
-
 ## Adding .NET dll to vba project Considerations
 1- I figured out that for adding C# dlls to VBA project as a reference they should be first registered with regsam.exe command:
 ```
@@ -47,3 +42,4 @@ then the ***created tlb file*** should be added as a reference.
 + The code for Deflection Analysis is written with the help of paython project named  [**PythonFEM**](https://github.com/vishnurvp/PythonFEM) and for the purpose of matrix calculations the nuget package [**mathnet-numerics**](https://github.com/mathnet/mathnet-numerics) is installed.
 
 + The accuracy of the displacements are validated by analysis of a the same cantilever beam modeled in CSI SAP 2022 sofware.
+
