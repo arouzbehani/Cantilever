@@ -3,9 +3,6 @@ Option Compare Database
 
 Sub CalculateDeflection()
    
-    Dim db As Database
-    Dim rs As Recordset
-    Dim strSQL As String
     Dim beamObj As New Cantilever.BeamElement
 
     beamObj.Force = CDbl(Form_Form1.txtForce.Value)
