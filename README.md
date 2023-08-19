@@ -18,8 +18,7 @@ The code for the Beam Analysis has these Classes/Interfaces located in [**Cantil
 The Beam is initialized simply by its length,section Id,material Id, and force value in [**vba module**](https://github.com/arouzbehani/Cantilever/blob/master/Module1.bas) which are provided from a VBA form inside the access file and then it returns an array of displacements with respect to mesh number parameter passed to its Displacements method.
 
 The result is displayed in the form of line chart which is bounded to the Deflections table.
-
-![Alt Text](https://github.com/arouzbehani/Cantilever/blob/master/Cantilever/front.png)
+[![Cantilever Beam Cover](https://github.com/arouzbehani/Cantilever/blob/master/res/cover.png)](https://youtu.be/fbS7ZiWBtJo)
 
 
 ## Adding .NET dll to vba project Considerations
