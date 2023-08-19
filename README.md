@@ -33,7 +33,7 @@ The result is displayed in the form of line chart which is bounded to the Deflec
 ```      
 then the ***created tlb file*** should be added as a reference.
 
-2- It was advised to decorate BeamElement class with [ClassInterface(ClassInterfaceType.AutoDual)]
+2- It was advised to decorate BeamElement class with ```[ClassInterface(ClassInterfaceType.AutoDual)]```
 
 3- Registering C# project for COM interop is necessary
 
