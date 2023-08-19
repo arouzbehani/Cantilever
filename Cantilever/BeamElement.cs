@@ -28,11 +28,13 @@ namespace Cantilever
             _length = length;
             _matid = matid;
             _force=force;
+            _secid = secid;
         }
 
         public double Force { get => _force; set => _force = value; }
         public double Length { get => _length; set => _length = value; }
-        public int Matid { get => _matid; set => _matid = value;  }
+        public int MatId { get => _matid; set => _matid = value;  }
+        public int SectionId { get => _secid; set => _secid = value;  }
         public double[] Displacements(int mesh=10)
         {
             var dr = new DataReader();

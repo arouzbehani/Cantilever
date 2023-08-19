@@ -7,8 +7,9 @@ Sub CalculateDeflection()
 
     beamObj.Force = CDbl(Form_Form1.txtForce.Value)
     beamObj.Length = CDbl(Form_Form1.txtLength.Value)
-    beamObj.Matid = Int(Form_Form1.cmbSections.Value)
-
+    beamObj.SectionId = Int(Form_Form1.cmbSections.Value)
+    beamObj.MatId = Int(Form_Form1.cmbMaterials.Value)
+    
     Dim meshNum As Integer
     meshNum = Int(Form_Form1.txtMeshNum.Value)
     res = beamObj.Displacements(meshNum)
