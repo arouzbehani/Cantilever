@@ -34,6 +34,23 @@ The result is displayed in the form of line chart which is bounded to the Deflec
 
 [![Cantilever Beam Cover](https://github.com/arouzbehani/Cantilever/blob/master/res/cover.png)](https://youtu.be/fbS7ZiWBtJo)
 
+## Dll Tester
+[**Dll Tester**](https://github.com/arouzbehani/Cantilever/tree/master/DLL_Tester) is a Simple C# Console Application which is created to test and debug the Cantilever project by adding it as a reference.
+```C#
+﻿using System;
+using Cantilever;
+namespace DLL_Tester
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            BeamElement beam = new BeamElement(3000, 1,1,1000);
+            Console.WriteLine(beam.Displacements());
+        }
+    }
+}
+```
 
 ## Adding .NET dll to vba project Considerations
 1- I figured out that for adding C# dlls to VBA project as a reference they should be first registered with regsam.exe command:
