@@ -56,8 +56,8 @@ namespace DLL_Tester
 1- I figured out that for adding C# dlls to VBA project as a reference they should be first registered with regsam.exe command:
 <!---->
 ```
-      C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe cantilever.dll /codebase /tlb 
-      C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe cantilever.dll /codebase
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe cantilever.dll /codebase /tlb 
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe cantilever.dll /codebase
 ```      
 then the ***created tlb file*** should be added as a reference.
 
@@ -70,7 +70,7 @@ then the ***created tlb file*** should be added as a reference.
 
 4- Com visibility should be set to **true** in [assemblyInfo.cs](https://github.com/arouzbehani/Cantilever/blob/master/Cantilever/Properties/AssemblyInfo.cs) file: 
 ```c#
-      [assembly: ComVisible(true)]
+[assembly: ComVisible(true)]
 ```
 
 ## References
