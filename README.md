@@ -76,5 +76,5 @@ then the ***created tlb file*** should be added as a reference.
 ## References
 + The code for Deflection Analysis is written with the help of Python project named  [**PythonFEM**](https://github.com/vishnurvp/PythonFEM) and for the purpose of matrix calculations the nuget package [**mathnet-numerics**](https://github.com/mathnet/mathnet-numerics) is installed.
 
-+ The accuracy of the displacements are validated by analysis of a the same cantilever beam modeled in [**CSI SAP 2022**](https://www.csiamerica.com/products/sap2000) sofware.
++ The accuracy of the displacements are validated by analysis of the same cantilever beam modeled in [**CSI SAP 2022**](https://www.csiamerica.com/products/sap2000) sofware.
 
