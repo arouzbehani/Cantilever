@@ -53,7 +53,7 @@ namespace DLL_Tester
 ```
 
 ## Adding .NET dll to vba project Considerations
-1- I figured out that for adding C# dlls to VBA project as a reference they should be first registered with regsam.exe command:
+1- I figured out that for adding C# dlls to VBA project as a reference they should be first registered with regasm.exe command:
 <!---->
 ```
 C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe cantilever.dll /codebase /tlb 
