@@ -97,7 +97,8 @@ I added an API endpoint in which the VBA project as well as any other front solo
         }
 
 ```
-On ther other hand and in VBA project the [**Module1**](https://github.com/arouzbehani/Cantilever/blob/master/Module1.bas) is updated and a Function for the code for getting displacements is added as follow:
+## Consuming Web Service from VBA
+In VBA project the [**Module1**](https://github.com/arouzbehani/Cantilever/blob/master/Module1.bas) is updated and a Function for the code for getting displacements is added as follow:
 ```VBA
 Function GetDisplacements(matId As Integer, secId As Integer, force As Double, length As Double, meshNum As Integer) As Variant
     Dim objHTTP As Object
