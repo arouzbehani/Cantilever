@@ -74,7 +74,7 @@ then the ***created tlb file*** should be added as a reference.
 ```
 
 ## Web API Approach
-I added an API endpoint in which the VBA project as well as any other front soloution can use the FEM Calculations in C#. The [**BeamApi**](https://github.com/arouzbehani/Cantilever/blob/master/API/Controllers/BeamApiController.cs) Controller adds Cantilever project as reference and receives length,section id , ... and othere parameters as input.
+I added an API endpoint in which the VBA project as well as any other front soloution can use the FEM Calculations in C#. The [**BeamApi**](https://github.com/arouzbehani/Cantilever/blob/master/API/Controllers/BeamApiController.cs) Controller adds [**Cantilever**](https://github.com/arouzbehani/Cantilever/tree/master/Cantilever) project as reference and receives length,section id , ... and othere parameters as input.
 ```C#
         using Microsoft.AspNetCore.Mvc;
         using Cantilever;
@@ -96,6 +96,48 @@ I added an API endpoint in which the VBA project as well as any other front solo
 
         }
 
+```
+On ther other hand and in VBA project the [**Module1**](https://github.com/arouzbehani/Cantilever/blob/master/Module1.bas) is updated and a Function for the code for getting displacements is added as follow:
+```VBA
+Function GetDisplacements(matId As Integer, secId As Integer, force As Double, length As Double, meshNum As Integer) As Variant
+    Dim objHTTP As Object
+    Dim baseUrl As String
+    Dim fullUrl As String
+    Dim strResponse As String
+
+    ' Set the URL of the web service
+    baseUrl = "https://localhost:7030/BeamApi"
+    fullUrl = baseUrl & "?matId=" & matId & "&secId=" & secId & "&force=" & force & "&length=" & length & "&meshNum=" & meshNum
+
+    ' Create an HTTP request object
+    Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP")
+
+    ' Open a GET request to the URL
+    objHTTP.Open "GET", fullUrl, False
+
+    ' Send the request
+    objHTTP.send ""
+
+    ' Handle The Response
+    Dim responseText As String
+    Dim listOfDoubles() As String
+
+    responseText = objHTTP.responseText
+    listOfDoubles = Split(responseText, ",")
+    
+    Dim i As Integer
+    Dim numstr As String
+    For i = LBound(listOfDoubles) To UBound(listOfDoubles)
+        numstr = Replace(listOfDoubles(i), "[", "")
+        numstr = Replace(numstr, "]", "")
+        listOfDoubles(i) = CDbl(numstr)
+    Next i
+    GetDisplacements = listOfDoubles
+    ' Clean up the HTTP object
+    Set objHTTP = Nothing
+    
+    
+End Function
 ```
 
 ## References
