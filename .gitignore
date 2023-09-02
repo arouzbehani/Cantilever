@@ -8,3 +8,8 @@ obj/
 packages/
 
 Cantilever/DATA/db.laccdb
+Cantilever/DATA/db.accdb
+API/WeatherForecast.cs
+API/Dockerfile
+.dockerignore
+API/Controllers/WeatherForecastController.cs

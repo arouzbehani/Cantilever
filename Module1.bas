@@ -1,14 +1,13 @@
-Attribute VB_Name = "Module1"
 Option Compare Database
 
 Sub CalculateDeflection()
    
     Dim beamObj As New Cantilever.BeamElement
 
-    beamObj.Force = CDbl(Form_Form1.txtForce.Value)
-    beamObj.Length = CDbl(Form_Form1.txtLength.Value)
-    beamObj.SectionId = Int(Form_Form1.cmbSections.Value)
-    beamObj.MatId = Int(Form_Form1.cmbMaterials.Value)
+    beamObj.force = CDbl(Form_Form1.txtForce.Value)
+    beamObj.length = CDbl(Form_Form1.txtLength.Value)
+    beamObj.sectionId = Int(Form_Form1.cmbSections.Value)
+    beamObj.matId = Int(Form_Form1.cmbMaterials.Value)
     
     Dim meshNum As Integer
     meshNum = Int(Form_Form1.txtMeshNum.Value)
@@ -21,7 +20,29 @@ Sub CalculateDeflection()
     
     For i = 0 To meshNum
         z_coord(i) = Round(res(i), 4)
-        x_coord(i) = i / meshNum * beamObj.Length
+        x_coord(i) = i / meshNum * beamObj.length
+    Next i
+    AddArraysToDeflections x_coord(), z_coord()
+    Form_Form1.chartDeflections.Requery
+
+
+End Sub
+Sub CalculateDeflection_FromWebService()
+   Dim meshNum As Integer
+   Dim length As Double
+   length = CDbl(Form_Form1.txtLength.Value)
+   meshNum = Int(Form_Form1.txtMeshNum.Value)
+    res = GetDisplacements(Int(Form_Form1.cmbMaterials.Value), Int(Form_Form1.cmbSections.Value), CDbl(Form_Form1.txtForce.Value), length, Int(Form_Form1.txtMeshNum.Value))
+
+    Dim x_coord() As Variant
+    Dim z_coord() As Variant
+    
+    ReDim x_coord(0 To meshNum)
+    ReDim z_coord(0 To meshNum)
+    
+    For i = 0 To meshNum
+        z_coord(i) = Round(res(i), 4)
+        x_coord(i) = i / meshNum * length
     Next i
     AddArraysToDeflections x_coord(), z_coord()
     Form_Form1.chartDeflections.Requery
@@ -53,3 +74,43 @@ Sub AddArraysToDeflections(x_coord() As Variant, z_coord() As Variant)
     Set rs = Nothing
     Set db = Nothing
 End Sub
+Function GetDisplacements(matId As Integer, secId As Integer, force As Double, length As Double, meshNum As Integer) As Variant
+    Dim objHTTP As Object
+    Dim baseUrl As String
+    Dim fullUrl As String
+    Dim strResponse As String
+
+    ' Set the URL of the web service
+    baseUrl = "https://localhost:7030/BeamApi"
+    fullUrl = baseUrl & "?matId=" & matId & "&secId=" & secId & "&force=" & force & "&length=" & length & "&meshNum=" & meshNum
+
+    ' Create an HTTP request object
+    Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP")
+
+    ' Open a GET request to the URL
+    objHTTP.Open "GET", fullUrl, False
+
+    ' Send the request
+    objHTTP.send ""
+
+    ' Handle The Response
+    Dim responseText As String
+    Dim listOfDoubles() As String
+
+    responseText = objHTTP.responseText
+    listOfDoubles = Split(responseText, ",")
+    
+    Dim i As Integer
+    Dim numstr As String
+    For i = LBound(listOfDoubles) To UBound(listOfDoubles)
+        numstr = Replace(listOfDoubles(i), "[", "")
+        numstr = Replace(numstr, "]", "")
+        listOfDoubles(i) = CDbl(numstr)
+    Next i
+    GetDisplacements = listOfDoubles
+    ' Clean up the HTTP object
+    Set objHTTP = Nothing
+    
+    
+End Function
+
