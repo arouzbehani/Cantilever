@@ -97,7 +97,7 @@ I added an API endpoint in which the VBA project as well as any other front solo
         }
 
 ```
-## Consuming Web Service from VBA
+## Consuming Web Service in VBA
 The Advantage of using Web Service in VBA Project is that it will be independent on importing dll files and no references needes to be imported after every changes in C# code.
 
 For this purpose the [**Module1**](https://github.com/arouzbehani/Cantilever/blob/master/Module1.bas) is updated and a Function for getting displacements is added as follow:
