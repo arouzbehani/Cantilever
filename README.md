@@ -73,6 +73,31 @@ then the ***created tlb file*** should be added as a reference.
 [assembly: ComVisible(true)]
 ```
 
+## Web API Approach
+I added an API endpoint in which the VBA project as well as any other front soloution can use the FEM Calculations in C#. The [**BeamApi**](https://github.com/arouzbehani/Cantilever/blob/master/API/Controllers/BeamApiController.cs) Controller adds Cantilever project as reference and receives length,section id , ... and othere parameters as input.
+```C#
+        using Microsoft.AspNetCore.Mvc;
+        using Cantilever;
+
+        [HttpGet(Name = "GetDisplacements")]
+        public IList<double> Get(int matId=1,int secId=1,double force=1000,double length=3000, int meshNum=10)
+        {
+            try
+            {
+            var beam = new BeamElement(length, matId,secId, force);
+            return beam.Displacements(meshNum);
+
+            }
+            catch (Exception exc)
+            {
+
+                return new List<double> { 0};
+            }
+
+        }
+
+```
+
 ## References
 + The code for Deflection Analysis is written with the help of Python project named  [**PythonFEM**](https://github.com/vishnurvp/PythonFEM) and for the purpose of matrix calculations the nuget package [**mathnet-numerics**](https://github.com/mathnet/mathnet-numerics) is installed.
 
