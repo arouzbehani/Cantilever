@@ -98,7 +98,10 @@ I added an API endpoint in which the VBA project as well as any other front solo
 
 ```
 ## Consuming Web Service from VBA
-In VBA project the [**Module1**](https://github.com/arouzbehani/Cantilever/blob/master/Module1.bas) is updated and a Function for the code for getting displacements is added as follow:
+The Advantage of using Web Service in VBA Project is that it will be independent on importing dll files and no references needes to be imported after every changes in C# code.
+
+For this purpose the [**Module1**](https://github.com/arouzbehani/Cantilever/blob/master/Module1.bas) is updated and a Function for getting displacements is added as follow:
+
 ```VBA
 Function GetDisplacements(matId As Integer, secId As Integer, force As Double, length As Double, meshNum As Integer) As Variant
     Dim objHTTP As Object
@@ -140,6 +143,10 @@ Function GetDisplacements(matId As Integer, secId As Integer, force As Double, l
     
 End Function
 ```
+## Data Accessibility Considerations
+Accessing an MS ACCESS Database is only applicable with Windows machines. Although the web API project is written in .NET Core and is able to run on either a Linux or Windows machine, reading data using the OleDb library can only be done on a Windows machine.
+
+Therefore, for development purposes and a more distributed solution, it is wise to isolate the database from the frontend and backend domains.
 
 ## References
 + The code for Deflection Analysis is written with the help of Python project named  [**PythonFEM**](https://github.com/vishnurvp/PythonFEM) and for the purpose of matrix calculations the nuget package [**mathnet-numerics**](https://github.com/mathnet/mathnet-numerics) is installed.
