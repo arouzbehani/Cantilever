@@ -110,7 +110,7 @@ Function GetDisplacements(matId As Integer, secId As Integer, force As Double, l
     Dim strResponse As String
 
     ' Set the URL of the web service
-    baseUrl = "https://localhost:7030/BeamApi"
+    baseUrl = "http://localhost:8686/BeamApi"
     fullUrl = baseUrl & "?matId=" & matId & "&secId=" & secId & "&force=" & force & "&length=" & length & "&meshNum=" & meshNum
 
     ' Create an HTTP request object
@@ -146,7 +146,7 @@ End Function
 ## Data Accessibility Considerations
 Accessing an MS ACCESS Database is only applicable with Windows machines. Although the web API project is written in .NET Core and is able to run on either a Linux or Windows machine, reading data using the OleDb library can only be done on a Windows machine.
 
-Therefore, for development purposes and a more distributed solution, it is wise to isolate the database from the frontend and backend domains.
+Therefore, for development purposes and a more distributed solution, it is wise to decouple the database from the frontend and backend domains.
 
 ## References
 + The code for Deflection Analysis is written with the help of Python project named  [**PythonFEM**](https://github.com/vishnurvp/PythonFEM) and for the purpose of matrix calculations the nuget package [**mathnet-numerics**](https://github.com/mathnet/mathnet-numerics) is installed.
