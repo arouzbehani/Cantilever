@@ -81,7 +81,7 @@ Function GetDisplacements(matId As Integer, secId As Integer, force As Double, l
     Dim strResponse As String
 
     ' Set the URL of the web service
-    baseUrl = "https://localhost:7030/BeamApi"
+    baseUrl = "http://localhost:8686/BeamApi"
     fullUrl = baseUrl & "?matId=" & matId & "&secId=" & secId & "&force=" & force & "&length=" & length & "&meshNum=" & meshNum
 
     ' Create an HTTP request object
