@@ -73,6 +73,81 @@ then the ***created tlb file*** should be added as a reference.
 [assembly: ComVisible(true)]
 ```
 
+## Web API Approach
+I added an API endpoint in which the VBA project as well as any other front soloution can use the FEM Calculations in C#. The [**BeamApi**](https://github.com/arouzbehani/Cantilever/blob/master/API/Controllers/BeamApiController.cs) Controller adds [**Cantilever**](https://github.com/arouzbehani/Cantilever/tree/master/Cantilever) project as reference and receives length,section id , ... and othere parameters as input.
+```C#
+        using Microsoft.AspNetCore.Mvc;
+        using Cantilever;
+
+        [HttpGet(Name = "GetDisplacements")]
+        public IList<double> Get(int matId=1,int secId=1,double force=1000,double length=3000, int meshNum=10)
+        {
+            try
+            {
+            var beam = new BeamElement(length, matId,secId, force);
+            return beam.Displacements(meshNum);
+
+            }
+            catch (Exception exc)
+            {
+
+                return new List<double> { 0};
+            }
+
+        }
+
+```
+## Consuming Web Service in VBA
+The Advantage of using Web Service in VBA Project is that it will be independent on importing dll files and no references needes to be imported after every changes in C# code.
+
+For this purpose the [**Module1**](https://github.com/arouzbehani/Cantilever/blob/master/Module1.bas) is updated and a Function for getting displacements is added as follow:
+
+```VBA
+Function GetDisplacements(matId As Integer, secId As Integer, force As Double, length As Double, meshNum As Integer) As Variant
+    Dim objHTTP As Object
+    Dim baseUrl As String
+    Dim fullUrl As String
+    Dim strResponse As String
+
+    ' Set the URL of the web service
+    baseUrl = "https://localhost:7030/BeamApi"
+    fullUrl = baseUrl & "?matId=" & matId & "&secId=" & secId & "&force=" & force & "&length=" & length & "&meshNum=" & meshNum
+
+    ' Create an HTTP request object
+    Set objHTTP = CreateObject("MSXML2.ServerXMLHTTP")
+
+    ' Open a GET request to the URL
+    objHTTP.Open "GET", fullUrl, False
+
+    ' Send the request
+    objHTTP.send ""
+
+    ' Handle The Response
+    Dim responseText As String
+    Dim listOfDoubles() As String
+
+    responseText = objHTTP.responseText
+    listOfDoubles = Split(responseText, ",")
+    
+    Dim i As Integer
+    Dim numstr As String
+    For i = LBound(listOfDoubles) To UBound(listOfDoubles)
+        numstr = Replace(listOfDoubles(i), "[", "")
+        numstr = Replace(numstr, "]", "")
+        listOfDoubles(i) = CDbl(numstr)
+    Next i
+    GetDisplacements = listOfDoubles
+    ' Clean up the HTTP object
+    Set objHTTP = Nothing
+    
+    
+End Function
+```
+## Data Accessibility Considerations
+Accessing an MS ACCESS Database is only applicable with Windows machines. Although the web API project is written in .NET Core and is able to run on either a Linux or Windows machine, reading data using the OleDb library can only be done on a Windows machine.
+
+Therefore, for development purposes and a more distributed solution, it is wise to isolate the database from the frontend and backend domains.
+
 ## References
 + The code for Deflection Analysis is written with the help of Python project named  [**PythonFEM**](https://github.com/vishnurvp/PythonFEM) and for the purpose of matrix calculations the nuget package [**mathnet-numerics**](https://github.com/mathnet/mathnet-numerics) is installed.
 
